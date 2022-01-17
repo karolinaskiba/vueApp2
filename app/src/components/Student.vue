@@ -1,66 +1,91 @@
 <template>
-  <div id="q-app" style="min-height: 100vh">
-    <div class="q-pa-md q-gutter-md">
-      <q-list bordered class="rounded-borders">
-        <q-item>
-          <q-item-section avatar top>
-            <q-icon name="person" color="black" size="34px"></q-icon>
-          </q-item-section>
+  <q-item>
+    <q-item-section avatar top>
+      <q-icon name="person" color="black" size="34px"></q-icon>
+    </q-item-section>
 
-          <q-item-section top class="col-2 gt-sm">
-            <q-item-label class="q-mt-sm">Karol Zajączkowski</q-item-label>
-          </q-item-section>
+    <q-item-section top class="col-2 gt-sm">
+      <q-item-label class="q-mt-sm">
+        {{ firstName }} {{ lastName }}
+      </q-item-label>
+    </q-item-section>
 
-          <q-item-section top>
-            <q-item-label lines="1">
-              <span class="text-weight-medium">Szkoła średnia klasa I </span>
-              <span class="text-grey-8"></span>
-            </q-item-label>
-            <q-item-label caption lines="1"> Zbiór zadań: PAZDRO </q-item-label>
-            <q-item-label
-              lines="1"
-              class="q-mt-xs text-body2 text-weight-bold text-primary text-uppercase"
-            >
-              <span>[ skype ]</span>
-            </q-item-label>
-          </q-item-section>
+    <q-item-section top>
+      <q-item-label lines="1">
+        <span class="text-weight-medium">
+          Szkoła {{ schoolName }} klasa {{ grade }}
+          <span v-if="extension"> [ *rozrzerzenie ]</span>
+        </span>
+        <span class="text-grey-8"></span>
+      </q-item-label>
+      <q-item-label caption lines="1"> Zbiór zadań: {{ book }} </q-item-label>
+      <q-item-label
+        lines="1"
+        class="q-mt-xs text-body2 text-weight-bold text-primary text-uppercase"
+      >
+        <span>{{ communicatorName }} </span>
+      </q-item-label>
+    </q-item-section>
 
-          <q-item-section top side>
-            <div class="text-grey-8 q-gutter-xs">
-              <q-btn
-                class="gt-xs"
-                size="12px"
-                flat
-                dense
-                round
-                icon="delete"
-              ></q-btn>
-              <q-btn
-                class="gt-xs"
-                size="12px"
-                flat
-                dense
-                round
-                icon="done"
-              ></q-btn>
-              <q-btn size="12px" flat dense round icon="more_vert"></q-btn>
-            </div>
-          </q-item-section>
-        </q-item>
-        <q-separator spaced></q-separator>
-      </q-list>
-    </div>
-  </div>
+    <q-item-section top side>
+      <div class="text-grey-8 q-gutter-xs">
+        <q-btn class="gt-xs" size="12px" flat dense round icon="delete"></q-btn>
+        <q-btn class="gt-xs" size="12px" flat dense round icon="done"></q-btn>
+        <q-btn size="12px" flat dense round icon="more_vert"></q-btn>
+      </div>
+    </q-item-section>
+  </q-item>
 </template>
 <script lang="ts">
-import { ref } from "vue";
+import { CommunicatorTypeEnum } from "../enums/ComunicatorTypeEnum";
+import { computed } from "vue";
+
 export default {
-  setup() {
-    const name = ref("karolina");
-    const age = ref(31);
+  props: {
+    firstName: {
+      type: String,
+      default: "",
+    },
+    lastName: {
+      type: String,
+      default: "",
+    },
+
+    schoolName: {
+      type: String,
+      default: "",
+    },
+    grade: {
+      type: Number,
+      default: 0,
+    },
+    book: {
+      type: String,
+      default: "",
+    },
+    extension: {
+      type: Boolean,
+      default: false,
+    },
+    communicator: {
+      type: String,
+      default: "",
+    },
+  },
+  setup(props: any) {
+    let communicatorName = computed(() => {
+      if (props.communicator === CommunicatorTypeEnum.TEAMS) {
+        console.log(props.communicator);
+        return "TEAMS";
+      } else if (props.communicator === CommunicatorTypeEnum.SKYPE) {
+        return "SKYPE";
+      } else if (props.communicator === CommunicatorTypeEnum.MEET) {
+        return "MEET";
+      }
+      return true;
+    });
     return {
-      name,
-      age,
+      communicatorName,
     };
   },
 };
