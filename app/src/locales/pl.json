@@ -2,5 +2,7 @@
   "Titles": {
     "Studenst List": "Lista uczniów"
   },
-  "message": "Moja wiadomosć  Hello"
+  "messages": {
+    "No students to display": "Brak Uczniów do wyświetlenia !"
+  }
 }
