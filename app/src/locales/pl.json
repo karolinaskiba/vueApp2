@@ -1,6 +1,7 @@
 {
   "Titles": {
-    "Studenst List": "Lista uczniów"
+    "Studenst List": "Lista uczniów",
+    "Student": "Uczeń"
   },
   "messages": {
     "No students to display": "Brak Uczniów do wyświetlenia !"
