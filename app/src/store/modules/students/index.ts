@@ -4,7 +4,7 @@ import getters from "./getters";
 import StudentModel from "@/models/StudentModel";
 
 export default {
-  namespace: true,
+  namespaced: true,
   state() {
     return {
       students: <StudentModel[]>[

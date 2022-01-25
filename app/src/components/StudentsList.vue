@@ -27,10 +27,11 @@ export default {
   },
   computed: {
     students() {
-      return this.$store.getters.students;
+      console.log("students", this.$store.getters["students/students"]);
+      return this.$store.getters["students/students"];
     },
     hasStudents() {
-      return this.$store.getters.hasStudents;
+      return this.$store.getters["students/hasStudents"];
     },
   },
 };
