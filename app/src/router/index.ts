@@ -18,6 +18,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/students/:id",
     name: "StudentDetail",
+    props: true,
     component: StudentDetail,
   },
   {

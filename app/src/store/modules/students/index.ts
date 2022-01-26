@@ -17,7 +17,7 @@ export default {
           book: "Pazdro",
           extension: true,
           communicator: 1,
-          id: 0,
+          id: "1",
         },
         {
           firstName: "Karo",
@@ -28,7 +28,7 @@ export default {
           book: "Oficyna",
           extension: false,
           communicator: 2,
-          id: 2,
+          id: "2",
         },
       ],
     };

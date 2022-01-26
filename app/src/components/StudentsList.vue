@@ -12,6 +12,7 @@
           :book="student.book"
           :extension="student.extension"
           :communicator="student.communicator"
+          :id="student.id"
         />
       </q-list>
       <p v-else>{{ $t("messages.No students to display") }}</p>
@@ -27,7 +28,6 @@ export default {
   },
   computed: {
     students() {
-      console.log("students", this.$store.getters["students/students"]);
       return this.$store.getters["students/students"];
     },
     hasStudents() {

@@ -30,8 +30,15 @@
     <q-item-section top side>
       <div class="text-grey-8 q-gutter-xs">
         <q-btn class="gt-xs" size="12px" flat dense round icon="delete"></q-btn>
-        <q-btn class="gt-xs" size="12px" flat dense round icon="done"></q-btn>
-        <q-btn size="12px" flat dense round icon="more_vert"></q-btn>
+        <q-btn class="gt-xs" size="12px" flat dense round icon="edit"></q-btn>
+        <q-btn
+          size="12px"
+          flat
+          dense
+          round
+          icon="list"
+          :to="studentPath"
+        ></q-btn>
       </div>
     </q-item-section>
   </q-item>
@@ -39,6 +46,7 @@
 <script lang="ts">
 import { CommunicatorTypeEnum } from "../enums/ComunicatorTypeEnum";
 import { computed } from "vue";
+import { useRoute } from "vue-router";
 
 export default {
   props: {
@@ -71,11 +79,15 @@ export default {
       type: String,
       default: "",
     },
+    id: {
+      type: String,
+      default: "",
+    },
   },
   setup(props: any) {
+    const route = useRoute();
     let communicatorName = computed(() => {
       if (props.communicator === CommunicatorTypeEnum.TEAMS) {
-        console.log(props.communicator);
         return "TEAMS";
       } else if (props.communicator === CommunicatorTypeEnum.SKYPE) {
         return "SKYPE";
@@ -84,8 +96,12 @@ export default {
       }
       return true;
     });
+    let studentPath = computed(() => {
+      return route.path + "/" + props.id;
+    });
     return {
       communicatorName,
+      studentPath,
     };
   },
 };

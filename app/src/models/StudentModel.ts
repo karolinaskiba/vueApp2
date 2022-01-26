@@ -10,7 +10,7 @@ export default class StudentModel {
   book: string;
   extension: boolean;
   communicator: CommunicatorTypeEnum;
-  id: number;
+  id: string;
 
   constructor(values: any = {}) {
     this.firstName = values.firstName ?? "";
@@ -21,6 +21,6 @@ export default class StudentModel {
     this.book = values.book ?? "";
     this.extension = values.extension ?? false;
     this.communicator = values.communicator ?? 1;
-    this.id = values.id;
+    this.id = values.id ?? "";
   }
 }
