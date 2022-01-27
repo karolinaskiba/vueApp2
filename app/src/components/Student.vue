@@ -97,7 +97,6 @@ export default {
       return true;
     });
     let studentPath = computed(() => {
-      console.log(route.path + "/" + props.id);
       return route.path + "/" + props.id;
     });
     return {

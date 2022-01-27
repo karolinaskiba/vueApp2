@@ -17,101 +17,53 @@
           <q-separator inset></q-separator>
 
           <q-list>
-            <q-item>
-              <q-item-section avatar>
-                <q-icon color="deep-purple" name="school"></q-icon>
-              </q-item-section>
-
-              <q-item-section>
-                <q-item-label>KLASA</q-item-label>
-                <q-item-label caption>{{ selectedStudent.grade }}</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-item v-if="selectedStudent.extension">
-              <q-item-section avatar>
-                <q-icon color="amber" name="emoji_events"></q-icon>
-              </q-item-section>
-
-              <q-item-section>
-                <q-item-label> *ROZSZERZENIE </q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-item>
-              <q-item-section avatar>
-                <q-icon color="red" name="menu_book"></q-icon>
-              </q-item-section>
-
-              <q-item-section>
-                <q-item-label>KSIĄŻKA</q-item-label>
-                <q-item-label caption>{{ selectedStudent.book }}</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-item>
-              <q-item-section avatar>
-                <q-icon color="blue" name="share"></q-icon>
-              </q-item-section>
-
-              <q-item-section>
-                <q-item-label>KOMUNIKATOR</q-item-label>
-                <q-item-label caption>
-                  {{ communinicatorType }}
-                </q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-item>
-              <q-item-section avatar>
-                <q-icon color="green" name="phone"></q-icon>
-              </q-item-section>
-
-              <q-item-section>
-                <q-item-label>TELEFON</q-item-label>
-                <q-item-label caption>
-                  {{ selectedStudent.phoneNumber }}
-                </q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-item>
-              <q-item-section avatar>
-                <q-icon color="pink" name="email"></q-icon>
-              </q-item-section>
-
-              <q-item-section>
-                <q-item-label>EMAIL</q-item-label>
-                <q-item-label caption>
-                  {{ selectedStudent.emailAddress }}
-                </q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section avatar>
-                <q-icon color="purple" name="escalator_warning"></q-icon>
-              </q-item-section>
-
-              <q-item-section>
-                <q-item-label>RODZIC</q-item-label>
-                <q-item-label caption>
-                  {{ selectedStudent.parentName }}
-                  {{ selectedStudent.parentPhoneNumber }}
-                </q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section avatar>
-                <q-icon color="blue-grey" name="info"></q-icon>
-              </q-item-section>
-
-              <q-item-section>
-                <q-item-label>INFORMACJE DODATKOWE</q-item-label>
-                <q-item-label caption>
-                  {{ selectedStudent.description }}
-                </q-item-label>
-              </q-item-section>
-            </q-item>
+            <student-detail-item
+              :iconHeader="'KLASA'"
+              :iconName="'school'"
+              :iconText="selectedStudent.grade"
+            />
+            <student-detail-item
+              v-if="selectedStudent.extension"
+              :iconName="'emoji_events'"
+              :iconText="'*ROZSZERZENIE'"
+              :iconColor="'amber'"
+            />
+            <student-detail-item
+              :iconName="'menu_book'"
+              :iconHeader="'KSIĄŻKA'"
+              :iconText="selectedStudent.book"
+              :iconColor="'pink'"
+            />
+            <student-detail-item
+              :iconName="'share'"
+              :iconHeader="'KOMUNIKATOR'"
+              :iconText="communinicatorType"
+              :iconColor="purple"
+            />
+            <student-detail-item
+              :iconName="'phone'"
+              :iconHeader="'TELEFON'"
+              :iconText="selectedStudent.phoneNumber"
+              :iconColor="'green'"
+            />
+            <student-detail-item
+              :iconName="'email'"
+              :iconHeader="'EMAIL'"
+              :iconText="selectedStudent.emailAddress"
+              :iconColor="'red'"
+            />
+            <student-detail-item
+              :iconName="'escalator_warning'"
+              :iconHeader="'RODZIC'"
+              :iconText="parent"
+              :iconColor="'purple'"
+            />
+            <student-detail-item
+              :iconName="'info'"
+              :iconHeader="'INFORMACJE DODATKOWE'"
+              :iconText="selectedStudent.description"
+              :iconColor="'grey-9'"
+            />
           </q-list>
         </q-card>
       </div>
@@ -121,6 +73,7 @@
 <script>
 import { SchoolTypeEnum } from "../enums/SchoolTypeEnum";
 import { CommunicatorTypeEnum } from "../enums/ComunicatorTypeEnum";
+import StudentDetailItem from "../components/StudentDetailItem.vue";
 
 export default {
   props: ["id"],
@@ -139,7 +92,7 @@ export default {
     schoolType() {
       if (this.selectedStudent.schoolType === SchoolTypeEnum.PRIMARY) {
         return "Szkoła podstawowa";
-      } else if (this.selectedStudent.schoolType === SchoolTypeEnum.HIGHT) {
+      } else if (this.selectedStudent.schoolType === SchoolTypeEnum.HIGH) {
         return "Szkoła srednia";
       } else if (
         this.selectedStudent.schoolType === SchoolTypeEnum.UNIWERSITY
@@ -164,11 +117,21 @@ export default {
         return "";
       }
     },
+    parent() {
+      return (
+        this.selectedStudent.parentName +
+        " " +
+        this.selectedStudent.parentPhoneNumber
+      );
+    },
   },
   created() {
     this.selectedStudent = this.$store.getters["students/students"].find(
       (student) => student.id === this.id
     );
+  },
+  components: {
+    StudentDetailItem,
   },
 };
 </script>
