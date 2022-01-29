@@ -10,25 +10,4 @@
     </q-item-section>
   </q-item>
 </template>
-<script lang="ts">
-export default {
-  props: {
-    iconName: {
-      type: String,
-      default: "school",
-    },
-    iconHeader: {
-      type: String,
-      default: "",
-    },
-    iconText: {
-      type: String,
-      default: "",
-    },
-    iconColor: {
-      type: String,
-      default: "primary",
-    },
-  },
-};
-</script>
+<script type="ts" src="@/viewmodels/studentDetailItem.ts"></script>

@@ -21,18 +21,4 @@
     </q-card-section>
   </q-card>
 </template>
-<script lang="ts">
-export default {
-  emits: ["change-filter"],
-  data() {
-    return {
-      schoolType: ["1", "2", "3"],
-    };
-  },
-  watch: {
-    schoolType() {
-      this.$emit("change-filter", this.schoolType);
-    },
-  },
-};
-</script>
+<script type="ts" src="@/viewmodels/filterStudents.ts"></script>

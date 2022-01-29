@@ -4,11 +4,4 @@
     <students-list />
   </div>
 </template>
-<script lang="ts">
-import StudentsList from "../components/StudentsList.vue";
-export default {
-  components: {
-    StudentsList,
-  },
-};
-</script>
+<script type="ts" src="@/viewmodels/students.ts"></script>

@@ -10,20 +10,4 @@
     </div>
   </div>
 </template>
-<script lang="ts">
-import StudentForm from "../components/StudentForm.vue";
-import router from "../router/index";
-import store from "../store/index";
-
-export default {
-  components: {
-    StudentForm,
-  },
-  methods: {
-    saveData(student: any) {
-      store.dispatch("students/addNewStudent", student);
-      router.push("/students");
-    },
-  },
-};
-</script>
+<script type="ts" src="@/viewmodels/newStudent.ts"></script>
