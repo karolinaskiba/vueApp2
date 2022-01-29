@@ -25,6 +25,7 @@
 import Student from "./Student.vue";
 import FilterStudents from "./FilterStudents.vue";
 import { SchoolTypeEnum } from "../enums/SchoolTypeEnum";
+import store from "../store/index";
 export default {
   data() {
     return {
@@ -42,7 +43,7 @@ export default {
   },
   computed: {
     students() {
-      return this.$store.getters["students/students"].filter((student) => {
+      return store.getters["students/students"].filter((student) => {
         if (student.schoolType === 1 && this.schools.includes("1"))
           return student;
         else if (student.schoolType === 2 && this.schools.includes("2"))
@@ -53,7 +54,7 @@ export default {
       });
     },
     hasStudents() {
-      return this.$store.getters["students/hasStudents"];
+      return store.getters["students/hasStudents"];
     },
   },
 };

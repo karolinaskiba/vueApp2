@@ -10,7 +10,7 @@
     </q-item-section>
   </q-item>
 </template>
-<script>
+<script lang="ts">
 export default {
   props: {
     iconName: {

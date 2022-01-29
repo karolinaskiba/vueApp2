@@ -57,7 +57,7 @@
           <q-avatar size="56px" class="q-mb-sm">
             <img src="@/assets/Avatar.png" />
           </q-avatar>
-          <div class="text-weight-bold">Karolina SKiba</div>
+          <div class="text-weight-bold">Karolina Skiba</div>
           <div>karolinauczy.pl</div>
         </div>
       </q-img>
@@ -65,23 +65,4 @@
   </div>
 </template>
 
-<script>
-import MainHeader from "./MainHeader.vue";
-
-export default {
-  name: "LayoutDefault",
-  components: {
-    MainHeader,
-  },
-  data() {
-    return {
-      leftDrawerOpen: false,
-    };
-  },
-  methods: {
-    openDrawer() {
-      this.leftDrawerOpen = !this.leftDrawerOpen;
-    },
-  },
-};
-</script>
+<script type="ts" src="@/viewmodels/mainMenu.ts"></script>

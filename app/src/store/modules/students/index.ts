@@ -32,7 +32,6 @@ export default {
           book: "Oficyna",
           extension: false,
           communicator: 2,
-          id: "2",
           parentName: "Jolanta Skiba",
           parentPhoneNumber: "570073662",
           phoneNumber: "123456789",

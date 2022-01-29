@@ -10,7 +10,7 @@
         icon="menu"
       />
 
-      <q-toolbar-title> My App </q-toolbar-title>
+      <q-toolbar-title> Karolina Uczy </q-toolbar-title>
 
       <div>
         <q-btn flat round dense icon="group_add" to="/new-student"></q-btn>

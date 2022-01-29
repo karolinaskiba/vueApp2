@@ -21,7 +21,7 @@
     </q-card-section>
   </q-card>
 </template>
-<script>
+<script lang="ts">
 export default {
   emits: ["change-filter"],
   data() {
