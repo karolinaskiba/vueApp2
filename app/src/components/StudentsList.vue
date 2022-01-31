@@ -2,6 +2,7 @@
   <div>
     <div class="q-pa-md q-gutter-md">
       <filter-students @change-filter="setFilters" />
+      <students-order @change-order="setOrder" />
 
       <q-list v-if="hasStudents" separator bordered class="rounded-borders">
         <student

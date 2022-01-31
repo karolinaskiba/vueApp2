@@ -2,63 +2,52 @@ import { SchoolTypeEnum } from "@/enums/SchoolTypeEnum";
 import { CommunicatorTypeEnum } from "@/enums/ComunicatorTypeEnum";
 import StudentDetailItem from "@/components/StudentDetailItem.vue";
 import StudentModel from "@/models/StudentModel";
+import { computed, defineComponent, reactive, ref } from "vue";
+import store from "@/store/index";
 
-export default {
+export default defineComponent({
   props: ["id"],
-  data() {
-    return {
-      selectedStudent: StudentModel,
-    };
-  },
 
-  computed: {
-    fullName(): string {
-      return (
-        this.selectedStudent.firstName + " " + this.selectedStudent.lastName
-      );
-    },
-    schoolType(): string {
-      if (this.selectedStudent.schoolType === SchoolTypeEnum.PRIMARY) {
+  setup(props: any) {
+    const selectedStudent = ref<StudentModel>(
+      store.getters["students/students"].find(
+        (student) => student.id === props.id
+      )
+    );
+
+    const fullName = computed(
+      () =>
+        selectedStudent.value.firstName + " " + selectedStudent.value.lastName
+    );
+
+    const schoolType = computed(() => {
+      if (selectedStudent.value.schoolType === SchoolTypeEnum.PRIMARY) {
         return "Szkoła podstawowa";
-      } else if (this.selectedStudent.schoolType === SchoolTypeEnum.HIGH) {
+      } else if (selectedStudent.value.schoolType === SchoolTypeEnum.HIGH) {
         return "Szkoła srednia";
       } else if (
-        this.selectedStudent.schoolType === SchoolTypeEnum.UNIWERSITY
+        selectedStudent.value.schoolType === SchoolTypeEnum.UNIWERSITY
       ) {
         return "Studia";
       } else {
         return "";
       }
-    },
-    communinicatorType(): string {
-      if (this.selectedStudent.communicator === CommunicatorTypeEnum.SKYPE) {
-        return "SKYPE";
-      } else if (
-        this.selectedStudent.communicator === CommunicatorTypeEnum.TEAMS
-      ) {
-        return "TEAMS";
-      } else if (
-        this.selectedStudent.communicator === CommunicatorTypeEnum.MEET
-      ) {
-        return "MEET";
-      } else {
-        return "";
-      }
-    },
-    parent(): string {
+    });
+    const parent = computed(() => {
       return (
-        this.selectedStudent.parentName +
+        selectedStudent.value.parentName +
         " " +
-        this.selectedStudent.parentPhoneNumber
+        selectedStudent.value.parentPhoneNumber
       );
-    },
-  },
-  created(): void {
-    this.selectedStudent = this.$store.getters["students/students"].find(
-      (student) => student.id === this.id
-    );
+    });
+    return {
+      selectedStudent,
+      fullName,
+      schoolType,
+      parent,
+    };
   },
   components: {
     StudentDetailItem,
   },
-};
+});

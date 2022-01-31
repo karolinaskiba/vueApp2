@@ -1,5 +1,7 @@
 import Student from "@/components/Student.vue";
 import FilterStudents from "@/components/FilterStudents.vue";
+import StudentsOrder from "@/components/StudentsOrder.vue";
+
 import { SchoolTypeEnum } from "../enums/SchoolTypeEnum";
 import store from "../store/index";
 import { defineComponent, ref, computed } from "vue";
@@ -16,7 +18,9 @@ export default defineComponent({
     const setFilters = (schoolType: string[]) => {
       schools.value = schoolType;
     };
-
+    const setOrder = (order: any) => {
+      console.log(order.value);
+    };
     const hasStudents = computed(() => {
       return store.getters["students/hasStudents"];
     });
@@ -35,11 +39,12 @@ export default defineComponent({
       );
     });
 
-    return { schools, setFilters, hasStudents, students };
+    return { schools, setFilters, hasStudents, students, setOrder };
   },
 
   components: {
     Student,
     FilterStudents,
+    StudentsOrder,
   },
 });
