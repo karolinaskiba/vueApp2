@@ -1,8 +1,8 @@
 import { CommunicatorTypeEnum } from "../enums/ComunicatorTypeEnum";
-import { computed } from "vue";
+import { computed, defineComponent } from "vue";
 import { useRoute } from "vue-router";
 
-export default {
+export default defineComponent({
   props: {
     firstName: {
       type: String,
@@ -58,4 +58,4 @@ export default {
       studentPath,
     };
   },
-};
+});

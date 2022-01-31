@@ -1,6 +1,7 @@
 import StudentsList from "@/components/StudentsList.vue";
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   components: {
     StudentsList,
   },
-};
+});

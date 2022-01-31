@@ -1,4 +1,6 @@
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   props: {
     iconName: {
       type: String,
@@ -17,4 +19,4 @@ export default {
       default: "primary",
     },
   },
-};
+});
