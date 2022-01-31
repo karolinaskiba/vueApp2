@@ -5,7 +5,7 @@ import store from "../store/index";
 export default {
   data() {
     return {
-      schools: ["1", "2", "3"],
+      schools: ["1", "2", "3"] as string[],
     };
   },
   components: {

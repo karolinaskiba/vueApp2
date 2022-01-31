@@ -1,22 +1,23 @@
 import { SchoolTypeEnum } from "@/enums/SchoolTypeEnum";
 import { CommunicatorTypeEnum } from "@/enums/ComunicatorTypeEnum";
 import StudentDetailItem from "@/components/StudentDetailItem.vue";
+import StudentModel from "@/models/StudentModel";
 
 export default {
   props: ["id"],
   data() {
     return {
-      selectedStudent: "",
+      selectedStudent: StudentModel,
     };
   },
 
   computed: {
-    fullName() {
+    fullName(): string {
       return (
         this.selectedStudent.firstName + " " + this.selectedStudent.lastName
       );
     },
-    schoolType() {
+    schoolType(): string {
       if (this.selectedStudent.schoolType === SchoolTypeEnum.PRIMARY) {
         return "Szkoła podstawowa";
       } else if (this.selectedStudent.schoolType === SchoolTypeEnum.HIGH) {
@@ -29,7 +30,7 @@ export default {
         return "";
       }
     },
-    communinicatorType() {
+    communinicatorType(): string {
       if (this.selectedStudent.communicator === CommunicatorTypeEnum.SKYPE) {
         return "SKYPE";
       } else if (
@@ -44,7 +45,7 @@ export default {
         return "";
       }
     },
-    parent() {
+    parent(): string {
       return (
         this.selectedStudent.parentName +
         " " +
@@ -52,7 +53,7 @@ export default {
       );
     },
   },
-  created() {
+  created(): void {
     this.selectedStudent = this.$store.getters["students/students"].find(
       (student) => student.id === this.id
     );

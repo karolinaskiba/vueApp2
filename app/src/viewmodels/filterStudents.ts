@@ -2,7 +2,7 @@ export default {
   emits: ["change-filter"],
   data() {
     return {
-      schoolType: ["1", "2", "3"],
+      schoolType: ["1", "2", "3"] as string[],
     };
   },
   watch: {

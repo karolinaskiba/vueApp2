@@ -1,4 +1,4 @@
-import StudentModel from "../models/StudentModel";
+import StudentModel from "@/models/StudentModel";
 export default {
   data() {
     return {
@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     onSubmitStudent() {
-      const student = {
+      const student: StudentModel = {
         firstName: this.firstName,
         lastName: this.lastName,
         schoolType: this.schoolType,
