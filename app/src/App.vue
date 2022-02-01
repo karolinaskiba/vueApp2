@@ -2,7 +2,12 @@
   <q-layout view="lHh Lpr lFf">
     <main-menu />
     <q-page-container>
-      <router-view></router-view>
+      <transition
+        enter-active-class="animated slideInUp"
+        leave-active-class="animated slideOutDown"
+      >
+        <router-view></router-view>
+      </transition>
     </q-page-container>
   </q-layout>
 </template>
@@ -17,3 +22,9 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.slideInUp,
+.slideOutDown {
+  animation-duration: 0.7s;
+}
+</style>
