@@ -12,6 +12,7 @@ export default {
       }
     );
     const responseData = await response.json();
+
     if (!response.ok) {
       ///error
       console.log(responseData);
@@ -28,10 +29,13 @@ export default {
     );
     const responseData = await response.json();
 
-    const studentsArr = [];
     if (!response.ok) {
-      ///error
+      const error = new Error(
+        responseData.message + " " + "Error from [action loadStudents]"
+      );
+      throw error;
     }
+    const studentsArr = [];
 
     for (const key in responseData) {
       const student: StudentModel = {

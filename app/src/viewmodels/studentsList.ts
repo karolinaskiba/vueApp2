@@ -9,24 +9,37 @@ import StudentModel from "@/models/StudentModel";
 
 export default defineComponent({
   setup() {
+    const error = ref("");
+    const modalOpenErr = ref(false);
     const isLoading = ref(false);
+
     const schools = ref<string[]>([
       SchoolTypeEnum.PRIMARY.toString(),
       SchoolTypeEnum.HIGH.toString(),
       SchoolTypeEnum.UNIWERSITY.toString(),
     ]);
+
     const setFilters = (schoolType: string[]) => {
       schools.value = schoolType;
     };
+
     const setOrder = (order: any) => {
       console.log(order.value);
     };
+
     const hasStudents = computed(() => {
-      return store.getters["students/hasStudents"];
+      return !isLoading.value && store.getters["students/hasStudents"];
     });
+
     async function loadingStudents() {
       isLoading.value = true;
-      await store.dispatch("students/loadStudents");
+      try {
+        await store.dispatch("students/loadStudents");
+      } catch (er) {
+        error.value = er.message || "ERROR from loadingStudents";
+        modalOpenErr.value = true;
+      }
+
       isLoading.value = false;
     }
 
@@ -53,6 +66,8 @@ export default defineComponent({
       setOrder,
       loadingStudents,
       isLoading,
+      modalOpenErr,
+      error,
     };
   },
 

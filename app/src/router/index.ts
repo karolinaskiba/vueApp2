@@ -3,6 +3,7 @@ import Home from "../views/Home.vue";
 import Students from "../views/Students.vue";
 import StudentDetail from "../views/StudentDetail.vue";
 import NewStudent from "../views/NewStudent.vue";
+import NotFoundPage from "../views/404.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
