@@ -1,4 +1,5 @@
 import StudentModel from "@/models/StudentModel";
+import { SchoolTypeEnum } from "@/enums/SchoolTypeEnum";
 export default {
   data() {
     return {
@@ -17,46 +18,45 @@ export default {
       schoolTypeOptions: [
         {
           label: "Szkoła podstawowa",
-          value: "PRIMARY",
+          value: 1,
         },
         {
           label: "Szkoła średnia",
-          value: "HIGH",
+          value: 2,
         },
         {
           label: "Studia",
-          value: "UNIWERSITY",
+          value: 3,
         },
       ],
       gradeOptions: [],
       communicatorOptions: [
         {
           label: "TEAMS",
-          value: "TEAMS",
+          value: 1,
         },
         {
           label: "SKYPE",
-          value: "SKYPE",
+          value: 2,
         },
         {
           label: "MEET",
-          value: "MEET",
+          value: 3,
         },
       ],
     };
   },
   methods: {
     onSubmitStudent() {
-      const student: StudentModel = {
+      const student = {
         firstName: this.firstName,
         lastName: this.lastName,
-        schoolType: this.schoolType,
+        schoolType: this.schoolType.value,
         schoolName: this.schoolName,
         grade: this.grade,
         book: this.book,
         extension: this.extension,
-        communicator: this.communicator,
-        id: "test",
+        communicator: this.communicator.value,
         phoneNumber: this.phoneNumber,
         emailAddress: this.emailAddress,
         parentName: this.parentName,
@@ -83,7 +83,7 @@ export default {
   },
   watch: {
     schoolType() {
-      if (this.schoolType.value === "PRIMARY") {
+      if (this.schoolType.value === SchoolTypeEnum.PRIMARY) {
         this.gradeOptions = [
           {
             label: "1",
@@ -118,7 +118,7 @@ export default {
             value: 8,
           },
         ];
-      } else if (this.schoolType.value === "UNIWERSITY") {
+      } else if (this.schoolType.value === SchoolTypeEnum.UNIWERSITY) {
         this.gradeOptions = [];
       } else {
         this.gradeOptions = [
