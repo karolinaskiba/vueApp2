@@ -1,3 +1,9 @@
 .bg-brand {
   background: #55a1bf !important;
 }
+#spinner {
+  position: absolute;
+  z-index: 99;
+  top: 30%;
+  left: calc(50% + 40px);
+}

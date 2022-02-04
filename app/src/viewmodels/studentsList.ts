@@ -9,6 +9,7 @@ import StudentModel from "@/models/StudentModel";
 
 export default defineComponent({
   setup() {
+    const isLoading = ref(false);
     const schools = ref<string[]>([
       SchoolTypeEnum.PRIMARY.toString(),
       SchoolTypeEnum.HIGH.toString(),
@@ -23,7 +24,13 @@ export default defineComponent({
     const hasStudents = computed(() => {
       return store.getters["students/hasStudents"];
     });
-    store.dispatch("students/loadStudents");
+    async function loadingStudents() {
+      isLoading.value = true;
+      await store.dispatch("students/loadStudents");
+      isLoading.value = false;
+    }
+
+    loadingStudents();
 
     const students = computed(() => {
       const students = store.getters["students/students"];
@@ -38,7 +45,15 @@ export default defineComponent({
       });
     });
 
-    return { schools, setFilters, hasStudents, students, setOrder };
+    return {
+      schools,
+      setFilters,
+      hasStudents,
+      students,
+      setOrder,
+      loadingStudents,
+      isLoading,
+    };
   },
 
   components: {

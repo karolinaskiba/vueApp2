@@ -2,6 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <main-menu />
     <q-page-container>
+      <div id="spinner"></div>
       <transition
         enter-active-class="animated slideInUp"
         leave-active-class="animated slideOutDown"
